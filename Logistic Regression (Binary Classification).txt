@@ -1,0 +1,32 @@
+# Import necessary libraries
+from sklearn.model_selection import train_test_split
+from sklearn.linear_model import LogisticRegression
+from sklearn.metrics import accuracy_score
+
+# Sample Data (Replace with your dataset)
+# Data for Heart Rate and Temperature with Condition (0 = Healthy, 1 = Not Healthy)
+data = {
+    'HeartRate': [72, 80, 65, 90, 100, 75, 85, 60, 82, 88],
+    'Temperature': [98.6, 99.1, 97.9, 100.5, 101.2, 98.3, 98.9, 97.5, 98.7, 99.0],
+    'Condition': [0, 1, 0, 1, 1, 0, 1, 0, 0, 1]  # Labels: 0 = Healthy, 1 = Not Healthy
+}
+
+# Features (X) and target (y)
+X = [[72, 98.6], [80, 99.1], [65, 97.9], [90, 100.5], [100, 101.2], [75, 98.3], [85, 98.9], [60, 97.5], [82, 98.7], [88, 99.0]]
+y = [0, 1, 0, 1, 1, 0, 1, 0, 0, 1]  # Target labels (Condition)
+
+# Step 1: Split the data into training and testing sets
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.3, random_state=42)
+
+# Step 2: Initialize the Logistic Regression model
+model = LogisticRegression()
+
+# Step 3: Train the model using the training data
+model.fit(X_train, y_train)
+
+# Step 4: Make predictions using the test data
+y_pred = model.predict(X_test)
+
+# Step 5: Calculate and print the accuracy
+accuracy = accuracy_score(y_test, y_pred)
+print(f"Accuracy: {accuracy * 100:.2f}%")
